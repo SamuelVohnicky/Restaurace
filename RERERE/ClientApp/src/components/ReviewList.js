@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import authService from './api-authorization/AuthorizeService'
+import ReviewInput from './ReviewInput';
 
 class ReviewList extends Component {
     static displayName = ReviewList.name;
@@ -10,10 +11,15 @@ class ReviewList extends Component {
     }
 
   render () {
-    return (
-      <ul className="list-group">
-            {this.renderReviews()}
-      </ul>
+      return (
+          <div>
+              <h4>Recenze</h4>
+              <ul className="list-group">
+                  {this.renderReviews()}
+              </ul>
+              <ReviewInput restaurantId={this.props.restaurantId}/>
+          </div>
+      
     );
     }
 

@@ -20,7 +20,7 @@ class Restaurant extends Component {
                 </p>
                 </div>
                 <div className="card-footer">
-                <ReviewList reviews={this.props.restaurant.reviews} />
+                <ReviewList reviews={this.props.restaurant.reviews} restaurantId={this.props.restaurant.id}/>
                 </div>
         </div>
     );
