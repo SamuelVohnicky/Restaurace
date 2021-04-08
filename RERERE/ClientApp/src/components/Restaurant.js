@@ -4,7 +4,7 @@ import ReviewList from './ReviewList'
 class Restaurant extends Component {
     static displayName = Restaurant.name;
 
-   
+    
 
   render () {
     return (
@@ -20,7 +20,7 @@ class Restaurant extends Component {
                 </p>
                 </div>
                 <div className="card-footer">
-                <ReviewList reviews={this.props.restaurant.reviews} restaurantId={this.props.restaurant.id}/>
+                <ReviewList reviews={this.props.restaurant.reviews} restaurantId={this.props.restaurant.id} onTermSubmit={ this.props.onTermSubmit}/>
                 </div>
         </div>
     );

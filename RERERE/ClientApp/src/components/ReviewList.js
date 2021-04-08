@@ -5,10 +5,7 @@ import ReviewInput from './ReviewInput';
 class ReviewList extends Component {
     static displayName = ReviewList.name;
 
-    constructor(props) {
-        super(props);
-        this.state = { restaurants: [], loading: true };
-    }
+    
 
   render () {
       return (
@@ -17,21 +14,13 @@ class ReviewList extends Component {
               <ul className="list-group">
                   {this.renderReviews()}
               </ul>
-              <ReviewInput restaurantId={this.props.restaurantId}/>
+              <ReviewInput restaurantId={this.props.restaurantId} onTermSubmit={this.props.onTermSubmit}/> 
           </div>
       
     );
     }
 
-    async populateRestaurantData() {
-        const token = await authService.getAccessToken();
-        const response = await fetch('api/restaurants', {
-            headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
-        });
-        const data = await response.json();
-        this.setState({ restaurants: data, loading: false });
-        console.log(data);
-    }
+    
 
     renderReviews() {
         if (!this.props.reviews.length) {

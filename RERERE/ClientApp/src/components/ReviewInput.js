@@ -36,7 +36,7 @@ class ReviewInput extends Component {
     };
 
     onFormSubmit = event => {
-        event.preventDefault();
+        //event.preventDefault();
         console.log(this.state.term);
         this.postReview();
         
@@ -65,28 +65,22 @@ class ReviewInput extends Component {
         if (currentUserEmail === "") {
             currentUserEmail = "anonym"
         }
-        fetch('api/reviews', {
+        const response = await fetch('api/reviews', {
             method: "POST",
             headers: {
-                'Authorization': `Bearer ${ token }`,
-            'Content-Type': 'application/json'
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             },
-    body: JSON.stringify({
-        restaurantId: this.props.restaurantId,
-        content: this.state.term,
-        authorEmail: currentUserEmail
-    })
-        })
-            .then(response => response.json())
-    .then(data => {
-        //mo�nost pracovat s odpov�d�
-        //this.setState({ hasAnswered: true });
+            body: JSON.stringify({
+                restaurantId: this.props.restaurantId,
+                content: this.state.term,
+                authorEmail: currentUserEmail
+            })
+        });
+        const data = await response.json();
         console.log(data);
+        //this.props.onTermSubmit(data);
         this.setState({ term: "" });
-    })
-    .catch(error => {
-        console.log(error);
-    });
     }
 }
 
