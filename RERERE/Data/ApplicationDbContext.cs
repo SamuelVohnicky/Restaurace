@@ -33,9 +33,7 @@ namespace RERERE.Data
                 NormalizedEmail = "admin@pslib.cz".ToUpper(),
                 NormalizedUserName = "admin@pslib.cz".ToUpper(),
                 TwoFactorEnabled = false,
-                EmailConfirmed = false,
-                LockoutEnabled = true,
-                PhoneNumberConfirmed = false,
+                EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null, "Heslo123*"),
                 SecurityStamp = string.Empty
             }); ;
@@ -47,9 +45,7 @@ namespace RERERE.Data
                 NormalizedEmail = "user@pslib.cz".ToUpper(),
                 NormalizedUserName = "user@pslib.cz".ToUpper(),
                 TwoFactorEnabled = false,
-                EmailConfirmed = false,
-                LockoutEnabled = true,
-                PhoneNumberConfirmed = false,
+                EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null, "Heslo123*"),
                 SecurityStamp = string.Empty
             }); ;

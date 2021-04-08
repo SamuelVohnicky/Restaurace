@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace RERERE.Data.Migrations
+namespace RERERE.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -83,6 +83,19 @@ namespace RERERE.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PersistedGrants", x => x.Key);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Restaurants",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Restaurants", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,6 +204,58 @@ namespace RERERE.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AuthorEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RestaurantId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Restaurants_RestaurantId",
+                        column: x => x.RestaurantId,
+                        principalTable: "Restaurants",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "11111111-1111-1111-1111-111111111111", 0, "d8c22803-76d2-443b-addc-6a2463c18217", "admin@pslib.cz", true, false, null, "ADMIN@PSLIB.CZ", "ADMIN@PSLIB.CZ", "AQAAAAEAACcQAAAAEP/QRAm7Hr25GJHKktEjpatk3rtzeCranm1odw3sS5qFLjwTVl/guM+tj/seVtqYEQ==", null, false, "", false, "admin@pslib.cz" },
+                    { "11111111-1111-1111-1111-111111111112", 0, "742b83fe-2bd0-441e-bd13-35740ad7f338", "user@pslib.cz", true, false, null, "USER@PSLIB.CZ", "USER@PSLIB.CZ", "AQAAAAEAACcQAAAAELWs6NtO2Bs81taOrqlbS80dBiuTvPDboxlNdCaIVE6dobm9vZ2d6J0w3wn5F4w+/w==", null, false, "", false, "user@pslib.cz" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Restaurants",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "TadyDorebjidlo" },
+                    { 2, "TadyneDorebjidlo" },
+                    { 3, "TadyhodneDorebjidlo" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Reviews",
+                columns: new[] { "Id", "AuthorEmail", "Content", "RestaurantId" },
+                values: new object[,]
+                {
+                    { 1, "user@pslib.cz", "fdsoi", 1 },
+                    { 2, "user@pslib.cz", "fdsoi1", 1 },
+                    { 3, "admin@pslib.cz", "fdsoi2", 1 },
+                    { 4, "user@pslib.cz", "fdsoi3", 2 },
+                    { 5, "user@pslib.cz", "fdsoi4", 3 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -255,6 +320,11 @@ namespace RERERE.Data.Migrations
                 name: "IX_PersistedGrants_SubjectId_SessionId_Type",
                 table: "PersistedGrants",
                 columns: new[] { "SubjectId", "SessionId", "Type" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_RestaurantId",
+                table: "Reviews",
+                column: "RestaurantId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -281,10 +351,16 @@ namespace RERERE.Data.Migrations
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
+                name: "Reviews");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Restaurants");
         }
     }
 }

@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RERERE.Data;
 
-namespace RERERE.Data.Migrations
+namespace RERERE.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210408064738_initial")]
+    [Migration("20210408070649_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -420,13 +420,13 @@ namespace RERERE.Data.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "96ed66e4-13eb-4019-851e-a100a0438ac5",
+                            ConcurrencyStamp = "d8c22803-76d2-443b-addc-6a2463c18217",
                             Email = "admin@pslib.cz",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@PSLIB.CZ",
                             NormalizedUserName = "ADMIN@PSLIB.CZ",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEuJ2YoRdAni3TXOfWqp/T571RXgT3WE//7kR9uKDI9HhvMO7qJe36TwftqNRM95iQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP/QRAm7Hr25GJHKktEjpatk3rtzeCranm1odw3sS5qFLjwTVl/guM+tj/seVtqYEQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -436,13 +436,13 @@ namespace RERERE.Data.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111112",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b2ec4017-9cd4-48a3-9554-d980d9320500",
+                            ConcurrencyStamp = "742b83fe-2bd0-441e-bd13-35740ad7f338",
                             Email = "user@pslib.cz",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
                             NormalizedEmail = "USER@PSLIB.CZ",
                             NormalizedUserName = "USER@PSLIB.CZ",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDIbDnpJmXdqGoJWrVMw6LYj3inTGW0mw6iMXkoCDkBYhOaGq7CxiG2cH5XXv9kwMg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELWs6NtO2Bs81taOrqlbS80dBiuTvPDboxlNdCaIVE6dobm9vZ2d6J0w3wn5F4w+/w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
