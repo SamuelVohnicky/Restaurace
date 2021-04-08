@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
-import authService from './api-authorization/AuthorizeService';
-import Restaurant from './Restaurant';
+import authService from './api-authorization/AuthorizeService'
 
-export class Home extends Component {
-    static displayName = Home.name;
+class ReviewList extends Component {
+    static displayName = ReviewList.name;
 
     constructor(props) {
         super(props);
         this.state = { restaurants: [], loading: true };
     }
 
-    componentDidMount() {
-        this.populateRestaurantData();
-    }
-
   render () {
     return (
-      <div className="card-collums">
-            {this.renderRestaurants()}
-      </div>
+      <ul className="list-group">
+            {this.renderReviews()}
+      </ul>
     );
     }
 
@@ -32,14 +27,18 @@ export class Home extends Component {
         console.log(data);
     }
 
-    renderRestaurants() {
-        if (!this.state.restaurants.length) {
+    renderReviews() {
+        if (!this.props.reviews.length) {
             return <h2 className="display-4">Žádné restaurace nebyli nalezeny.</h2>;
         }
-        return this.state.restaurants.map(restaurant => {
+        return this.props.reviews.map(review => {
             return (
-                <Restaurant key={restaurant.id} restaurant={restaurant} />
+                <li key={review.id} className="list-group-item">
+                    <strong>{review.authorEmail}</strong><br/>
+                    {review.content}
+                </li>
             );
         })
     }
 }
+export default ReviewList;
